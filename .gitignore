@@ -1,0 +1,67 @@
+# Python
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Models (large files) - only ML models, not backend code
+models/**/*
+!models/.gitkeep
+*.pth
+*.bin
+*.onnx
+*.safetensors
+
+# Data
+data/mongodb/
+data/cache/
+*.sqlite
+*.db
+
+# Generated images
+frontend/public/generated/
+backend/uploads/
+
+# Logs
+logs/
+*.log
+
+# Build outputs
+frontend/dist/
+frontend/build/
+backend/dist/
+
+# Testing
+coverage/
+.pytest_cache/
+.coverage
+
+# Temporary files
+tmp/
+temp/
+*.tmp
