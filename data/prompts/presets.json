@@ -1,0 +1,152 @@
+{
+  "categories": [
+    {
+      "name": "Realistic",
+      "description": "Photorealistic images and professional photography",
+      "prompts": [
+        {
+          "text": "Professional photo of a coffee cup on wooden table, natural lighting, shallow depth of field",
+          "parameters": {
+            "steps": 25,
+            "guidanceScale": 7.5
+          }
+        },
+        {
+          "text": "Portrait of a person in golden hour light, professional photography, sharp focus",
+          "parameters": {
+            "steps": 30,
+            "guidanceScale": 8
+          }
+        },
+        {
+          "text": "Modern architecture building against blue sky, professional photography, 8k",
+          "parameters": {
+            "steps": 25,
+            "guidanceScale": 7
+          }
+        }
+      ]
+    },
+    {
+      "name": "Artistic",
+      "description": "Paintings and artistic styles",
+      "prompts": [
+        {
+          "text": "Abstract watercolor painting of city skyline at sunset, vibrant colors, artistic",
+          "parameters": {
+            "steps": 30,
+            "guidanceScale": 9
+          }
+        },
+        {
+          "text": "Oil painting of mountain landscape in impressionist style, beautiful scenery",
+          "parameters": {
+            "steps": 30,
+            "guidanceScale": 8.5
+          }
+        },
+        {
+          "text": "Digital art of futuristic cityscape with neon lights, cyberpunk style, highly detailed",
+          "parameters": {
+            "steps": 35,
+            "guidanceScale": 9
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fantasy",
+      "description": "Fantasy and magical scenes",
+      "prompts": [
+        {
+          "text": "Dragon flying over medieval castle, epic fantasy art, dramatic lighting, highly detailed",
+          "parameters": {
+            "steps": 35,
+            "guidanceScale": 10
+          }
+        },
+        {
+          "text": "Magical forest with glowing mushrooms and fairy lights, enchanted atmosphere, fantasy art",
+          "parameters": {
+            "steps": 30,
+            "guidanceScale": 9
+          }
+        },
+        {
+          "text": "Ancient wizard tower on floating island in the clouds, epic fantasy, cinematic",
+          "parameters": {
+            "steps": 35,
+            "guidanceScale": 9.5
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sci-Fi",
+      "description": "Science fiction and futuristic scenes",
+      "prompts": [
+        {
+          "text": "Futuristic space station orbiting alien planet, sci-fi, cinematic lighting, highly detailed",
+          "parameters": {
+            "steps": 30,
+            "guidanceScale": 8.5
+          }
+        },
+        {
+          "text": "Cyberpunk street scene with neon signs and rain, futuristic city, night time, detailed",
+          "parameters": {
+            "steps": 35,
+            "guidanceScale": 9
+          }
+        },
+        {
+          "text": "Advanced robot in high-tech laboratory, sci-fi, professional lighting, 8k",
+          "parameters": {
+            "steps": 30,
+            "guidanceScale": 8
+          }
+        }
+      ]
+    },
+    {
+      "name": "Nature",
+      "description": "Natural landscapes and scenery",
+      "prompts": [
+        {
+          "text": "Serene mountain lake at sunrise, beautiful landscape photography, misty atmosphere",
+          "parameters": {
+            "steps": 25,
+            "guidanceScale": 7.5
+          }
+        },
+        {
+          "text": "Tropical beach with palm trees and crystal clear water, paradise, professional photography",
+          "parameters": {
+            "steps": 25,
+            "guidanceScale": 7
+          }
+        },
+        {
+          "text": "Ancient forest with sunlight streaming through trees, mystical atmosphere, nature photography",
+          "parameters": {
+            "steps": 30,
+            "guidanceScale": 8
+          }
+        }
+      ]
+    }
+  ],
+  "quickModifiers": [
+    "high quality",
+    "detailed",
+    "professional",
+    "8k",
+    "cinematic",
+    "dramatic lighting",
+    "soft lighting",
+    "vibrant colors",
+    "masterpiece",
+    "trending on artstation"
+  ],
+  "negativePromptDefaults": "low quality, blurry, distorted, deformed, ugly, bad anatomy, bad proportions, watermark, signature, text, cropped, out of frame, worst quality, low res, jpeg artifacts"
+}
