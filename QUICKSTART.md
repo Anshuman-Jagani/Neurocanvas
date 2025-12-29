@@ -121,7 +121,7 @@ pip install -r requirements.txt
 1. ✅ Week 1: Setup complete
 2. ✅ Week 2: Implement Neural Style Transfer
 3. ✅ Week 3: Add Diffusion Models
-4. 📅 Week 4: NLP Prompt Understanding
+4. ✅ Week 4: NLP Prompt Understanding
 
 ---
 

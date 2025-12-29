@@ -3,7 +3,7 @@ import ImageUploader from './ImageUploader';
 import StyleGallery from './StyleGallery';
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000/api/style-transfer';
+const API_BASE_URL = 'http://localhost:5001/api/style-transfer';
 
 export default function StyleTransfer() {
   const [contentImage, setContentImage] = useState(null);
@@ -70,7 +70,7 @@ export default function StyleTransfer() {
 
         if (status === 'completed') {
           clearInterval(pollInterval);
-          setResult(`http://localhost:5000${outputPath}`);
+          setResult(`http://localhost:5001${outputPath}`);
           setIsProcessing(false);
           setProgress(100);
         } else if (status === 'failed') {

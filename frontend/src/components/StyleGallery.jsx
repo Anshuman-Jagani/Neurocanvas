@@ -11,7 +11,7 @@ export default function StyleGallery({ onStyleSelect, selectedStyle }) {
 
   const fetchStyles = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/style-transfer/styles');
+      const response = await fetch('http://localhost:5001/api/style-transfer/styles');
       const data = await response.json();
       setStyles(data.styles || []);
       setLoading(false);
@@ -67,7 +67,7 @@ export default function StyleGallery({ onStyleSelect, selectedStyle }) {
             `}
           >
             <img
-              src={`http://localhost:5000${style.thumbnail}`}
+              src={`http://localhost:5001${style.thumbnail}`}
               alt={style.name}
               className="w-full h-32 object-cover"
             />

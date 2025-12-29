@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000/api/diffusion';
+const API_BASE_URL = 'http://localhost:5001/api/diffusion';
 
 export default function DiffusionGenerator() {
   const [prompt, setPrompt] = useState('');
@@ -91,7 +91,7 @@ export default function DiffusionGenerator() {
 
         if (status === 'completed') {
           clearInterval(pollInterval);
-          setResult(`http://localhost:5000${outputPath}`);
+          setResult(`http://localhost:5001${outputPath}`);
           setIsProcessing(false);
           setProgress(100);
           setEstimatedTime(null);

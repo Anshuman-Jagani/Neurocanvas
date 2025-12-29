@@ -1,0 +1,230 @@
+.prompt-analysis-container {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+}
+
+.analysis-header {
+  margin-bottom: 20px;
+}
+
+.analysis-header h3 {
+  color: #1e293b;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.analysis-card {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.analysis-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+}
+
+.card-header h4 {
+  margin: 0;
+  color: #475569;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Sentiment Card */
+.sentiment-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sentiment-label {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.sentiment-score {
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+.sentiment-bar {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.sentiment-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+  border-radius: 4px;
+}
+
+/* Mood Card */
+.mood-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.mood-label {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #334155;
+  text-transform: capitalize;
+}
+
+/* Keywords Card */
+.keywords-content {
+  min-height: 60px;
+}
+
+.keyword-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.keyword-tag {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: transform 0.2s ease;
+}
+
+.keyword-tag:hover {
+  transform: scale(1.05);
+}
+
+/* Concepts Card */
+.concepts-content {
+  min-height: 60px;
+}
+
+.concept-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.concept-badge {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  transition: transform 0.2s ease;
+}
+
+.concept-badge:hover {
+  transform: scale(1.05);
+}
+
+/* Styles Card */
+.styles-content {
+  min-height: 60px;
+}
+
+.style-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.style-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #334155;
+  font-size: 0.9375rem;
+  text-transform: capitalize;
+}
+
+.style-bullet {
+  color: #667eea;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* Colors Card */
+.colors-content {
+  min-height: 60px;
+}
+
+.color-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.color-chip {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.color-chip:hover {
+  transform: scale(1.05);
+}
+
+.no-data {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  font-style: italic;
+  margin: 0;
+  text-align: center;
+  padding: 12px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .prompt-analysis-container {
+    padding: 16px;
+  }
+
+  .analysis-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .analysis-header h3 {
+    font-size: 1.25rem;
+  }
+}

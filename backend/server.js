@@ -38,6 +38,7 @@ app.get('/health', (req, res) => {
 
 // API routes
 app.use('/api/style-transfer', require('./routes/style_transfer'));
+app.use('/api/nlp', require('./routes/nlp'));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
