@@ -12,7 +12,7 @@ from diffusers import StableDiffusionPipeline, DPMSolverMultistepScheduler
 from PIL import Image
 
 
-def load_pipeline(model_id="stabilityai/stable-diffusion-2-1-base", device="cpu"):
+def load_pipeline(model_id="runwayml/stable-diffusion-v1-5", device="cpu"):
     """
     Load Stable Diffusion pipeline with CPU optimizations
     
@@ -138,8 +138,8 @@ def main():
     parser.add_argument('--seed', type=int, default=None,
                        help='Random seed for reproducibility')
     parser.add_argument('--model', type=str, 
-                       default='stabilityai/stable-diffusion-2-1-base',
-                       help='Model to use (default: stabilityai/stable-diffusion-2-1-base)')
+                       default='runwayml/stable-diffusion-v1-5',
+                       help='Model to use (default: runwayml/stable-diffusion-v1-5)')
     parser.add_argument('--device', type=str, default='cpu',
                        choices=['cpu', 'cuda'],
                        help='Device to run on (default: cpu)')
