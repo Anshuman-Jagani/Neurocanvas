@@ -79,23 +79,23 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-pink-400 via-orange-400 to-yellow-400">
       {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <header className="bg-white/90 backdrop-blur-sm shadow-lg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">N</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center shadow-lg transform hover:scale-110 transition-transform duration-200">
+                <span className="text-white font-bold text-2xl">N</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">NeuroCanvas</h1>
-                <p className="text-xs text-gray-500">AI Art Director</p>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">NeuroCanvas</h1>
+                <p className="text-xs text-gray-600 font-medium">✨ AI Art Director</p>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-sm font-medium">System Ready</span>
+            <div className="flex items-center space-x-2 bg-emerald-50 px-4 py-2 rounded-full">
+              <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse shadow-lg shadow-emerald-300"></div>
+              <span className="text-sm font-semibold text-emerald-700">System Ready</span>
             </div>
           </div>
         </div>
@@ -103,32 +103,32 @@ function App() {
 
       {/* Tab Navigation */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-        <div className="flex space-x-4 border-b border-gray-200">
+        <div className="flex space-x-2 bg-white/80 backdrop-blur-sm rounded-2xl p-2 shadow-lg">
           <button
-            className={`px-4 py-2 font-semibold transition-colors ${
+            className={`px-6 py-3 font-semibold rounded-xl transition-all duration-200 transform ${
               activeTab === 'nlp'
-                ? 'text-indigo-600 border-b-2 border-indigo-600'
-                : 'text-gray-600 hover:text-gray-900'
+                ? 'bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white shadow-lg scale-105'
+                : 'text-gray-700 hover:bg-purple-50 hover:scale-105'
             }`}
             onClick={() => setActiveTab('nlp')}
           >
             🧠 NLP Prompt Understanding
           </button>
           <button
-            className={`px-4 py-2 font-semibold transition-colors ${
+            className={`px-6 py-3 font-semibold rounded-xl transition-all duration-200 transform ${
               activeTab === 'generation'
-                ? 'text-indigo-600 border-b-2 border-indigo-600'
-                : 'text-gray-600 hover:text-gray-900'
+                ? 'bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white shadow-lg scale-105'
+                : 'text-gray-700 hover:bg-orange-50 hover:scale-105'
             }`}
             onClick={() => setActiveTab('generation')}
           >
             🚀 Multi-Model Generation
           </button>
           <button
-            className={`px-4 py-2 font-semibold transition-colors ${
+            className={`px-6 py-3 font-semibold rounded-xl transition-all duration-200 transform ${
               activeTab === 'style-transfer'
-                ? 'text-indigo-600 border-b-2 border-indigo-600'
-                : 'text-gray-600 hover:text-gray-900'
+                ? 'bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white shadow-lg scale-105'
+                : 'text-gray-700 hover:bg-pink-50 hover:scale-105'
             }`}
             onClick={() => setActiveTab('style-transfer')}
           >
@@ -147,6 +147,7 @@ function App() {
                 onAnalyze={handleAnalyze}
                 onEnhance={handleEnhance}
                 isLoading={isLoading}
+                value={currentPrompt}
               />
               
               {analysis && (
@@ -170,10 +171,14 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-20 py-8 bg-white border-t">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600 text-sm">
-          <p>NeuroCanvas - Multimodal AI Art Director</p>
-          <p className="mt-1">Built with React, Node.js, PyTorch & MongoDB</p>
+      <footer className="mt-20 py-8 bg-white/80 backdrop-blur-sm border-t-4 border-gradient-to-r from-pink-400 via-purple-400 to-indigo-400">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-lg font-bold bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+            NeuroCanvas - Multimodal AI Art Director ✨
+          </p>
+          <p className="mt-2 text-sm text-gray-600 font-medium">
+            Built with 💖 using React, Node.js, PyTorch & MongoDB
+          </p>
         </div>
       </footer>
     </div>

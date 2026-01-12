@@ -15,7 +15,7 @@
 4. [Week 3: Diffusion Models](#week-3-diffusion-models) ✅ COMPLETED
 5. [Week 4: NLP Prompt Understanding](#week-4-nlp-prompt-understanding) ✅ COMPLETED
 6. [Week 5: Multi-Model Integration](#week-5-multi-model-integration) ✅ COMPLETED
-7. [Week 6: Reinforcement Learning](#week-6-reinforcement-learning) 📅 UPCOMING
+7. [Week 6: Reinforcement Learning](#week-6-reinforcement-learning) ✅ COMPLETED
 8. [Week 7: Local LLM Integration](#week-7-local-llm-integration) 📅 UPCOMING
 9. [Week 8: Polish & Deployment](#week-8-polish--deployment) 📅 UPCOMING
 10. [Technical Architecture](#technical-architecture)
@@ -436,7 +436,7 @@ def compare_images(images, prompt):
 
 ---
 
-## Week 6: Reinforcement Learning & Personalization 📅 UPCOMING
+## Week 6: Reinforcement Learning & Personalization ✅ COMPLETED
 
 ### Objectives
 - Implement Multi-Armed Bandit algorithm

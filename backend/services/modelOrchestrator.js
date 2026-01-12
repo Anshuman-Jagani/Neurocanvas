@@ -12,6 +12,33 @@ class ModelOrchestrator {
       'style-transfer': { totalRuns: 0, avgScore: 0, avgTime: 0 },
       'diffusion': { totalRuns: 0, avgScore: 0, avgTime: 0 }
     };
+    this.TIMEOUT_MS = 120000; // 2 minutes timeout
+  }
+
+  /**
+   * Execute a function with timeout
+   * @private
+   * @param {Function} executorFn - Function that returns a Promise
+   * @param {Number} timeoutMs - Timeout in milliseconds
+   * @param {String} modelName - Model name for error messages
+   * @returns {Promise} - Resolves with result or rejects with timeout error
+   */
+  _executeWithTimeout(executorFn, timeoutMs, modelName) {
+    return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
+        reject(new Error(`${modelName} generation timed out (${timeoutMs / 60000} minutes)`));
+      }, timeoutMs);
+
+      executorFn()
+        .then(result => {
+          clearTimeout(timeoutId);
+          resolve(result);
+        })
+        .catch(error => {
+          clearTimeout(timeoutId);
+          reject(error);
+        });
+    });
   }
 
   /**
@@ -87,13 +114,14 @@ class ModelOrchestrator {
       });
     }
     
-    // For now, only recommend diffusion (style transfer needs base image)
-    // Always recommend diffusion for text-to-image generation
-    recommendations.push({
-      model: 'diffusion',
-      confidence: 1.0,
-      reason: 'Text-to-image generation'
-    });
+    // Ensure at least diffusion is recommended for text-to-image (style transfer needs base image)
+    if (recommendations.length === 0 || !recommendations.some(r => r.model === 'diffusion')) {
+      recommendations.push({
+        model: 'diffusion',
+        confidence: 0.8,
+        reason: 'Text-to-image generation'
+      });
+    }
     
     return recommendations;
   }
@@ -167,7 +195,7 @@ class ModelOrchestrator {
       throw new Error('Style transfer requires a base image');
     }
     
-    return new Promise((resolve, reject) => {
+    const executorFn = () => new Promise((resolve, reject) => {
       const pythonScript = path.join(__dirname, '../../ml/style_transfer/style_transfer.py');
       const args = [
         pythonScript,
@@ -200,7 +228,21 @@ class ModelOrchestrator {
           }
         }
       });
+      
+      // Store python process for cleanup on timeout
+      executorFn._pythonProcess = python;
     });
+    
+    try {
+      const result = await this._executeWithTimeout(executorFn, this.TIMEOUT_MS, 'Style transfer');
+      return result;
+    } catch (error) {
+      // Kill the Python process if it's still running
+      if (executorFn._pythonProcess && !executorFn._pythonProcess.killed) {
+        executorFn._pythonProcess.kill();
+      }
+      throw error;
+    }
   }
 
   /**
@@ -208,7 +250,7 @@ class ModelOrchestrator {
    * @private
    */
   async _executeDiffusion(prompt, params) {
-    return new Promise((resolve, reject) => {
+    const executorFn = () => new Promise((resolve, reject) => {
       const pythonScript = path.join(__dirname, '../../ml/multi_model_generator.py');
       
       // Use virtual environment Python if available
@@ -265,7 +307,21 @@ class ModelOrchestrator {
           }
         }
       });
+      
+      // Store python process for cleanup on timeout
+      executorFn._pythonProcess = python;
     });
+    
+    try {
+      const result = await this._executeWithTimeout(executorFn, this.TIMEOUT_MS, 'Diffusion');
+      return result;
+    } catch (error) {
+      // Kill the Python process if it's still running
+      if (executorFn._pythonProcess && !executorFn._pythonProcess.killed) {
+        executorFn._pythonProcess.kill();
+      }
+      throw error;
+    }
   }
 
   /**

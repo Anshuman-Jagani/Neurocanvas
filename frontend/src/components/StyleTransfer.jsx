@@ -227,33 +227,33 @@ export default function StyleTransfer() {
           onClick={handleGenerate}
           disabled={!contentImage || !selectedStyle || isProcessing}
           className={`
-            px-8 py-4 rounded-lg font-semibold text-lg
+            px-8 py-4 rounded-xl font-bold text-lg
             transition-all duration-200 transform
             ${!contentImage || !selectedStyle || isProcessing
               ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              : 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:from-blue-600 hover:to-indigo-700 hover:scale-105 shadow-lg'
+              : 'bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white hover:shadow-xl hover:scale-105 shadow-lg'
             }
           `}
         >
-          {isProcessing ? 'Processing...' : 'Generate Styled Image'}
+          {isProcessing ? '⏳ Processing...' : '🎨 Generate Styled Image'}
         </button>
       </div>
 
       {/* Progress Bar */}
       {isProcessing && (
-        <div className="bg-white rounded-xl shadow-md p-6 mb-8">
+        <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 mb-8">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-700">Processing</span>
-            <span className="text-sm font-medium text-blue-600">{progress}%</span>
+            <span className="text-sm font-semibold text-gray-700">Processing</span>
+            <span className="text-sm font-bold text-purple-600">{progress}%</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-3">
             <div
-              className="bg-gradient-to-r from-blue-500 to-indigo-600 h-3 rounded-full transition-all duration-500"
+              className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 h-3 rounded-full transition-all duration-500"
               style={{ width: `${progress}%` }}
             />
           </div>
           <p className="text-sm text-gray-600 mt-2 text-center">
-            This may take 30-60 seconds on CPU...
+            This may take 30-60 seconds on CPU... ⏱️
           </p>
         </div>
       )}
@@ -284,15 +284,15 @@ export default function StyleTransfer() {
           <div className="flex justify-center gap-4 mt-6">
             <button
               onClick={handleDownload}
-              className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-semibold"
+              className="px-6 py-3 bg-gradient-to-r from-emerald-400 to-teal-400 text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-200 font-bold"
             >
-              Download Image
+              📥 Download Image
             </button>
             <button
               onClick={handleReset}
-              className="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors font-semibold"
+              className="px-6 py-3 bg-gradient-to-r from-orange-400 to-pink-400 text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-200 font-bold"
             >
-              Create Another
+              🔄 Create Another
             </button>
           </div>
         </div>
