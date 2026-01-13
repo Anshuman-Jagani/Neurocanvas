@@ -1,0 +1,14 @@
+Original prompt: {original_prompt}
+User feedback: {feedback}
+
+Please refine the prompt to address the feedback while maintaining the original vision.
+
+Provide your response in this format:
+
+1. Refined prompt: [Your improved version]
+
+2. Explanation: [Brief explanation of what you changed and why]
+
+3. Alternative suggestions: [2-3 alternative variations]
+
+Focus on making the prompt more vivid, specific, and suitable for AI art generation.

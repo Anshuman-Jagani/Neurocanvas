@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './App.css'
 import StyleTransfer from './components/StyleTransfer'
 import PromptInput from './components/PromptInput'
 import PromptAnalysis from './components/PromptAnalysis'

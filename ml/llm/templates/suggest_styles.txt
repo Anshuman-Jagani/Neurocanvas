@@ -1,0 +1,11 @@
+Analyze this prompt and suggest 3 artistic styles that would work well:
+
+Prompt: {prompt}
+
+For each style, provide:
+1. Style name
+2. Why it fits this prompt
+3. How it would enhance the image
+4. Specific visual elements it would add
+
+Be specific and actionable. Focus on styles that AI art generators can effectively render.

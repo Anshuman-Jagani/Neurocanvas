@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './UserProfile.css';
 
 const UserProfile = ({ userId }) => {
   const [stats, setStats] = useState(null);

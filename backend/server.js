@@ -41,6 +41,7 @@ app.use('/api/style-transfer', require('./routes/style_transfer'));
 app.use('/api/nlp', require('./routes/nlp'));
 app.use('/api/generate', require('./routes/generation'));
 app.use('/api/feedback', require('./routes/feedback'));
+app.use('/api/llm', require('./routes/llm'));
 
 // Error handling middleware
 app.use((err, req, res, next) => {

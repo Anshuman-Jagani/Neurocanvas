@@ -275,12 +275,25 @@ const GenerationDashboard = () => {
             <p className="text-gray-600 mb-2">Queue position: {jobStatus.queuePosition}</p>
           )}
           {jobStatus.progress !== undefined && (
-            <div className="w-full bg-gray-200 rounded-full h-3">
-              <div
-                className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 h-3 rounded-full transition-all duration-500"
-                style={{ width: `${jobStatus.progress}%` }}
-              />
-            </div>
+            <>
+              <div className="w-full bg-gray-200 rounded-full h-3 mb-3">
+                <div
+                  className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 h-3 rounded-full transition-all duration-500"
+                  style={{ width: `${jobStatus.progress}%` }}
+                />
+              </div>
+              {jobStatus.status === 'processing' && jobStatus.progress === 10 && (
+                <div className="mt-4 p-4 bg-blue-50 border-2 border-blue-200 rounded-xl">
+                  <p className="text-blue-800 font-semibold mb-2">⏳ First-time setup in progress...</p>
+                  <p className="text-blue-700 text-sm mb-2">
+                    The AI model is being downloaded (~4GB). This is a one-time process that may take 5-15 minutes depending on your internet speed.
+                  </p>
+                  <p className="text-blue-600 text-sm">
+                    💡 <strong>Tip:</strong> Future generations will be much faster (30-60 seconds)!
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </div>
       )}

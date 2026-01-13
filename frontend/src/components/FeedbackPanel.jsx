@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './FeedbackPanel.css';
 
 const FeedbackPanel = ({ generationId, model, metadata = {}, onFeedback }) => {
   const [rating, setRating] = useState(0);

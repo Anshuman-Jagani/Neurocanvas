@@ -23,34 +23,68 @@ def load_pipeline(model_id="runwayml/stable-diffusion-v1-5", device="cpu"):
     Returns:
         Configured pipeline
     """
-    print(f"Loading Stable Diffusion model: {model_id}")
-    print("This may take a few minutes on first run...")
+    print(f"Loading Stable Diffusion model: {model_id}", file=sys.stderr)
     
-    # Load pipeline
-    pipe = StableDiffusionPipeline.from_pretrained(
-        model_id,
-        torch_dtype=torch.float32,  # Use float32 for CPU
-        safety_checker=None,  # Disable safety checker for faster inference
-        requires_safety_checker=False
-    )
+    # Set cache directory to project's models folder
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    cache_dir = os.path.join(project_root, "models")
+    os.makedirs(cache_dir, exist_ok=True)
     
-    # Use DPMSolver for faster inference (fewer steps needed)
-    pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
+    # Set environment variables for HuggingFace cache
+    os.environ['TRANSFORMERS_CACHE'] = cache_dir
+    os.environ['HF_HOME'] = cache_dir
     
-    # Move to device
-    pipe = pipe.to(device)
-    
-    # CPU optimizations
-    if device == "cpu":
-        print("Applying CPU optimizations...")
-        # Enable attention slicing to reduce memory usage
-        pipe.enable_attention_slicing(1)
-        # Enable VAE slicing for large images
-        pipe.enable_vae_slicing()
-    
-    print(f"Model loaded successfully on {device}")
-    
-    return pipe
+    try:
+        print(f"📁 Using cache directory: {cache_dir}", file=sys.stderr)
+        print("⏳ Loading model... (this may take a moment)", file=sys.stderr)
+        
+        # Load pipeline with local_files_only first to check if cached
+        try:
+            pipe = StableDiffusionPipeline.from_pretrained(
+                model_id,
+                torch_dtype=torch.float32,  # Use float32 for CPU
+                safety_checker=None,  # Disable safety checker for faster inference
+                requires_safety_checker=False,
+                cache_dir=cache_dir,
+                local_files_only=True  # Try to use cached version first
+            )
+            print("✅ Using cached model", file=sys.stderr)
+        except Exception as e:
+            print(f"⚠️  Model not cached, downloading... (this will take 5-15 minutes)", file=sys.stderr)
+            print(f"💡 Tip: Run 'python ml/utils/model_downloader.py' to pre-download models", file=sys.stderr)
+            
+            # Download if not cached
+            pipe = StableDiffusionPipeline.from_pretrained(
+                model_id,
+                torch_dtype=torch.float32,
+                safety_checker=None,
+                requires_safety_checker=False,
+                cache_dir=cache_dir,
+                local_files_only=False
+            )
+        
+        # Use DPMSolver for faster inference (fewer steps needed)
+        pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
+        
+        # Move to device
+        pipe = pipe.to(device)
+        
+        # CPU optimizations
+        if device == "cpu":
+            print("🔧 Applying CPU optimizations...", file=sys.stderr)
+            # Enable attention slicing to reduce memory usage
+            pipe.enable_attention_slicing(1)
+            # Enable VAE slicing for large images
+            pipe.enable_vae_slicing()
+        
+        print(f"✅ Model loaded successfully on {device}", file=sys.stderr)
+        
+        return pipe
+        
+    except Exception as e:
+        print(f"❌ Error loading model: {e}", file=sys.stderr)
+        print(f"💡 Solution: Run 'python ml/utils/model_downloader.py' to download models", file=sys.stderr)
+        raise
 
 
 def generate_image(

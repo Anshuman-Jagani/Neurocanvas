@@ -97,8 +97,9 @@ def _generate_diffusion(prompt, params):
     output_filename = f"diffusion_{job_id}_{timestamp}.png"
     output_path = os.path.join(output_dir, output_filename)
     
-    # Path to stable_diffusion.py
-    script_path = os.path.join(os.path.dirname(__file__), 'diffusion', 'stable_diffusion.py')
+    # Path to mock diffusion (lightweight, no model download needed)
+    # To use real Stable Diffusion, change to: 'diffusion/stable_diffusion.py'
+    script_path = os.path.join(os.path.dirname(__file__), 'diffusion', 'mock_diffusion.py')
     
     # Use virtual environment Python if available
     venv_python = os.path.join(os.path.dirname(__file__), '..', 'venv', 'bin', 'python3')
@@ -117,10 +118,20 @@ def _generate_diffusion(prompt, params):
     ]
     
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+        # Increased timeout to 20 minutes to allow for model download on first run
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=1200)
         
         if result.returncode != 0:
-            raise Exception(f"Diffusion generation failed: {result.stderr}")
+            error_msg = result.stderr or "Unknown error"
+            # Check for common errors
+            if "No module named" in error_msg:
+                raise Exception(f"Missing Python dependency: {error_msg}")
+            elif "out of memory" in error_msg.lower():
+                raise Exception("Out of memory. Try reducing image size or steps.")
+            elif "model" in error_msg.lower() and "not found" in error_msg.lower():
+                raise Exception("Model not downloaded. Run: python ml/utils/model_downloader.py")
+            else:
+                raise Exception(f"Diffusion generation failed: {error_msg}")
         
         # Check if file was created
         if not os.path.exists(output_path):
@@ -138,7 +149,7 @@ def _generate_diffusion(prompt, params):
             }
         }
     except subprocess.TimeoutExpired:
-        raise Exception("Diffusion generation timed out (5 minutes)")
+        raise Exception("Diffusion generation timed out (20 minutes). Model may still be downloading.")
     except Exception as e:
         raise Exception(f"Diffusion generation error: {str(e)}")
 

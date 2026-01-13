@@ -12,7 +12,9 @@ class ModelOrchestrator {
       'style-transfer': { totalRuns: 0, avgScore: 0, avgTime: 0 },
       'diffusion': { totalRuns: 0, avgScore: 0, avgTime: 0 }
     };
-    this.TIMEOUT_MS = 120000; // 2 minutes timeout
+    // Increased timeout to 25 minutes to allow for model download on first run
+    // Subsequent runs will be much faster (30-60 seconds)
+    this.TIMEOUT_MS = 1500000; // 25 minutes timeout
   }
 
   /**

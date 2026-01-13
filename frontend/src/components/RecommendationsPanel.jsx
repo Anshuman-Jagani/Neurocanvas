@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './RecommendationsPanel.css';
 
 const RecommendationsPanel = ({ userId, onSelectRecommendation }) => {
   const [recommendations, setRecommendations] = useState({

@@ -1,0 +1,15 @@
+Explain this artistic concept in simple, clear terms:
+
+Concept: {concept}
+
+Please include:
+
+1. Definition: What is this concept?
+
+2. Visual characteristics: What does it look like?
+
+3. Famous examples: Notable artists or artworks
+
+4. How to use in prompts: Specific keywords and phrases to include
+
+Keep your explanation concise and practical for someone creating AI art prompts.
