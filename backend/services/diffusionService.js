@@ -8,7 +8,7 @@ const jobQueue = new Map();
 
 class DiffusionService {
   constructor() {
-    this.pythonPath = process.env.PYTHON_PATH || 'python3';
+    this.pythonPath = process.env.PYTHON_PATH || path.join(__dirname, '../../ml/venv/bin/python3');
     this.scriptPath = path.join(__dirname, '../../ml/diffusion/stable_diffusion.py');
     this.generatedDir = process.env.GENERATED_DIR || path.join(__dirname, '../../data/generated');
     
@@ -38,7 +38,7 @@ class DiffusionService {
 
     // Create generation record in database
     const generation = new Generation({
-      user: userId,
+      userId: userId,
       prompt: truncatedPrompt,
       model: 'diffusion',
       parameters: {
@@ -213,7 +213,7 @@ class DiffusionService {
    */
   async getHistory(userId, limit = 20, skip = 0) {
     const generations = await Generation.find({ 
-      user: userId,
+      userId: userId,
       model: 'diffusion'
     })
       .sort({ createdAt: -1 })

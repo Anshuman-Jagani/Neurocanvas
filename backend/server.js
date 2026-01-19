@@ -39,6 +39,7 @@ app.get('/health', (req, res) => {
 // API routes
 app.use('/api/style-transfer', require('./routes/style_transfer'));
 app.use('/api/nlp', require('./routes/nlp'));
+app.use('/api/diffusion', require('./routes/diffusion'));
 app.use('/api/generate', require('./routes/generation'));
 app.use('/api/feedback', require('./routes/feedback'));
 app.use('/api/llm', require('./routes/llm'));

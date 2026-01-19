@@ -5,7 +5,7 @@ const EventEmitter = require('events');
 class LLMService extends EventEmitter {
   constructor() {
     super();
-    this.pythonPath = 'python3';
+    this.pythonPath = process.env.PYTHON_PATH || path.join(__dirname, '../../ml/venv/bin/python3');
     this.scriptPath = path.join(__dirname, '../../ml/llm');
     this.activeProcesses = new Map();
   }

@@ -8,7 +8,7 @@ const jobQueue = new Map();
 
 class StyleTransferService {
   constructor() {
-    this.pythonPath = process.env.PYTHON_PATH || 'python3';
+    this.pythonPath = process.env.PYTHON_PATH || path.join(__dirname, '../../ml/venv/bin/python3');
     this.scriptPath = path.join(__dirname, '../../ml/style_transfer/neural_style_transfer.py');
     this.generatedDir = process.env.GENERATED_DIR || path.join(__dirname, '../../data/generated');
     
@@ -27,7 +27,7 @@ class StyleTransferService {
 
     // Create generation record in database
     const generation = new Generation({
-      user: userId,
+      userId: userId,
       prompt: `Style: ${path.basename(styleImagePath)}`,
       model: 'style_transfer',
       style: path.basename(styleImagePath, path.extname(styleImagePath)),
@@ -173,7 +173,7 @@ class StyleTransferService {
    * Get user's generation history
    */
   async getHistory(userId, limit = 20, skip = 0) {
-    const generations = await Generation.find({ user: userId })
+    const generations = await Generation.find({ userId: userId })
       .sort({ createdAt: -1 })
       .limit(limit)
       .skip(skip)

@@ -3,7 +3,7 @@ const path = require('path');
 
 class NLPService {
   constructor() {
-    this.pythonPath = 'python3';
+    this.pythonPath = process.env.PYTHON_PATH || path.join(__dirname, '../../ml/venv/bin/python3');
     this.mlDir = path.join(__dirname, '../../ml/nlp');
   }
 
